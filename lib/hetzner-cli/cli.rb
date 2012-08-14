@@ -1,6 +1,6 @@
 require 'rubygems'
 
-require 'hetnzer-cli/command'
+require 'hetzner-cli/command'
 
 module HetznerCli
   class CLI < Thor
