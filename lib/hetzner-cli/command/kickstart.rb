@@ -71,6 +71,11 @@ module HetznerCli
           fully_booted = false
           print "[#{ip}] Waiting for the linux install to finish and reboot: "
           STDOUT.flush
+          4.times {
+            sleep 5
+            print '.'
+            STDOUT.flush
+          }
           while !fully_booted do
             sleep 5
             print '.'
