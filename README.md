@@ -1,6 +1,6 @@
 # Hetnzer CLI
 ## Purpose
-[Hetzner](http://www.hetzner.de) is hoster that always you to get 'real' physical machines instead of all the 'virtualized' cloud stuff.
+[Hetzner](http://www.hetzner.de) is a hoster that allows you to get 'real' physical machines instead of all the 'virtualized' cloud stuff.
 This is especially handy for testing virtualization stuff.
 
 They provide a 'REST' like api that you can use to call separate tasks , like reset a server, install linux etc..
