@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "excon"
   s.add_dependency "net-ssh"
   s.add_dependency "system_timer"
+  s.add_dependency "faraday"
 
   s.add_development_dependency "bundler", ">= 1.0.0"
 
