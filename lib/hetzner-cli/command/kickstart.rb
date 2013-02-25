@@ -83,13 +83,17 @@ module HetznerCli
             begin
               # Ignoring new key
               Net::SSH.start(ip,'root',:password => new_password , :paranoid => false, :timeout => 5  ) do |ssh|
-                output = ssh.exec!("cat /root/.ssh/authorized_keys2")
-                if output.include?("No such file")
-                  puts
-                  puts "[#{ip}] Install is finished and system is available"
-                  puts "[#{ip}] Installing root ssh key"
-                  output = ssh.exec!("echo '#{key}' > /root/.ssh/authorized_keys")
-                  fully_booted = true
+                motd = ssh.exec!("cat /etc/motd")
+                motd = "" if motd.nil?
+                unless motd.include?('rescue')
+                  output = ssh.exec!("cat /root/.ssh/authorized_keys2")
+                  if output.include?("No such file")
+                    puts
+                    puts "[#{ip}] Install is finished and system is available"
+                    puts "[#{ip}] Installing root ssh key"
+                    output = ssh.exec!("echo '#{key}' > /root/.ssh/authorized_keys")
+                    fully_booted = true
+                  end
                 end
               end
             rescue Net::SSH::Disconnect,Errno::ECONNREFUSED, Errno::EHOSTUNREACH, Errno::ECONNABORTED, Errno::ECONNRESET, Errno::ENETUNREACH,Errno::ETIMEDOUT,IOError,Timeout::Error,Net::SSH::AuthenticationFailed
